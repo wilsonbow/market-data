@@ -13,12 +13,16 @@ class Watchlist:
     def __str__(self):
         keys = ''
         for key in self.shares_dict:
-            keys += ', {}'.format(key)
+            keys += ', {}: ${}'.format(key, self.shares_dict[key].last_price)
         keys = keys.lstrip(', ')
         return keys
 
     def __repr__(self):
-        return self.__str__()
+        keys = ''
+        for key in self.shares_dict:
+            keys += ', {}'.format(key)
+        keys = keys.lstrip(', ')
+        return keys
 
     def update_details(self, code):
         self.remove_share(code)

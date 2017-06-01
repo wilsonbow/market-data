@@ -1,0 +1,68 @@
+BoxLayout:
+    orientation: 'horizontal'
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.2
+
+        Label:
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.29, 0.44, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            id: user_fns
+            color: 1,0,0,1
+            text: 'Users'
+
+        Button:
+            text: 'Update list'
+            on_release: app.update_list
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.8
+
+        Label:
+
+            canvas.before:
+                Color:
+                    rgba: 0.06, 0.48, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            size_hint_y: 0.08
+            text: 'status'
+            color: 1,1,1,1
+            background_color: 0,0,1,1
+
+        GridLayout:
+
+            cols: 4
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.21, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            id: watchlist
+            text: 'the watchlist will be here'
+
+        Label:
+
+            canvas.before:
+                Color:
+                    rgba: 1, 0.67, 0.13, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            size_hint_y: 0.08
+            text: 'scrollbar'
+            color: 1,0,0,1

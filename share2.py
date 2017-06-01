@@ -18,7 +18,11 @@ class Share2(Share):
         return "{}: ${}".format(self.code, self.last_price)
 
     def __repr__(self):
-        return self.__str__()
+        return self.last_price
 
     def update_price(self):
         return getQuotes('ASX:'+self.code)[0]['LastTradePrice']
+
+    def get_price(self):
+        print(type(self.last_price))
+        return self.last_price
