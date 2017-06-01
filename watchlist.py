@@ -3,6 +3,7 @@ Watchlist class for use with BEAFS ASX app
 """
 
 from share2 import Share2
+from share2 import RetrievalError
 
 
 class Watchlist:
@@ -32,7 +33,10 @@ class Watchlist:
         if code in self.shares_dict:
             return None
         else:
-            self.shares_dict[code] = Share2(code)
+            try:
+                self.shares_dict[code] = Share2(code)
+            except RetrievalError:
+                return None
 
     def remove_share(self, code):
         try:

@@ -20,8 +20,16 @@ class Stocks(App):
 
         for share in self.my_watchlist.shares_dict:
             # Create button based on current share iteration
-            temp_label = Label(text=share, background_color=(0, 0, 1, 1))
-            self.root.ids.books.add_widget(temp_label)
+            price = self.my_watchlist.shares_dict[share].last_price
+            temp_label = Label(text=share + '\n$' + price)
+            self.root.ids.watchlist.add_widget(temp_label)
+
+    def add_to_list(self):
+        ticker = self.root.ids.code.text.upper()
+        self.root.ids.statusbar.text = 'Added {} to list'.format(ticker)
+        self.my_watchlist.add_share(ticker)
+        self.update_list()
+        self.root.ids.code.text = ""
 
 
 Stocks().run()

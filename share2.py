@@ -7,10 +7,13 @@ from yahoo_finance import Share
 from googlefinance import getQuotes
 
 
-class Share2(Share):
+class RetrievalError(Exception):
+    pass
 
+
+class Share2(Share):
     def __init__(self, code):
-        super().__init__(code+'.AX')
+        super().__init__(code + '.AX')
         self.code = code
         self.last_price = self.update_price()
 
@@ -18,11 +21,14 @@ class Share2(Share):
         return "{}: ${}".format(self.code, self.last_price)
 
     def __repr__(self):
-        return self.last_price
+        return "${}".format(self.last_price)
 
     def update_price(self):
-        return getQuotes('ASX:'+self.code)[0]['LastTradePrice']
+        try:
+            price = getQuotes('ASX:' + self.code)[0]['LastTradePrice']
+            return price
+        except:
+            raise RetrievalError
 
     def get_price(self):
-        print(type(self.last_price))
         return self.last_price
