@@ -4,6 +4,7 @@ Watchlist class for use with BEAFS ASX app
 
 from share2 import Share2
 from share2 import RetrievalError
+import csv
 
 
 class Watchlist:
@@ -47,3 +48,9 @@ class Watchlist:
     def update_prices(self):
         for key in self.shares_dict:
             self.shares_dict[key].update_price()
+
+    def save_watchlist(self, file_name):
+        with open(file_name, 'w', newline='') as fileID:
+            data_writer = csv.writer(fileID)
+            for key in self.shares_dict:
+                data_writer.writerow([key])

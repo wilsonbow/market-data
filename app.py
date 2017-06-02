@@ -15,13 +15,17 @@ class Stocks(App):
         self.root = Builder.load_file('app.kv')
         return self.root
 
+    def stop(self):
+        self.my_watchlist.save_watchlist('my_watchlist.csv')
+
     def update_list(self):
         self.root.ids.watchlist.clear_widgets()
 
         for share in self.my_watchlist.shares_dict:
             # Create button based on current share iteration
             price = self.my_watchlist.shares_dict[share].last_price
-            temp_label = Label(text=share + '\n$' + price)
+            temp_label = Label(text=share + '\n$' + price,
+                               font_size=24)
             self.root.ids.watchlist.add_widget(temp_label)
 
     def add_to_list(self):
