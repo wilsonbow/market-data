@@ -18,6 +18,11 @@ class Stocks(App):
     def stop(self):
         self.my_watchlist.save_watchlist('my_watchlist.csv')
 
+    def load_watchlist(self):
+        self.my_watchlist.load_watchlist('my_watchlist.csv')
+        self.update_list()
+        self.update_statusbar('Watchlist successfully loaded')
+
     def update_list(self):
         self.root.ids.watchlist.clear_widgets()
 

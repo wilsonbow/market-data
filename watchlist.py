@@ -54,3 +54,10 @@ class Watchlist:
             data_writer = csv.writer(fileID)
             for key in self.shares_dict:
                 data_writer.writerow([key])
+
+    def load_watchlist(self, file_name):
+        with open(file_name, 'r') as fileID:
+            loaded_data = csv.reader(fileID)
+
+            for row in loaded_data:
+                self.add_share(row[0])
