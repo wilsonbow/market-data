@@ -26,7 +26,7 @@ class Share2(Share):
     def update_price(self):
         try:
             price = getQuotes('ASX:' + self.code)[0]['LastTradePrice']
-            return price
+            self.last_price = price
         except:
             raise RetrievalError
 
