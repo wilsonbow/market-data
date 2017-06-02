@@ -5,10 +5,8 @@ It also incorporates a last_price attribute extracted from googlefinance module
 
 from yahoo_finance import Share
 from googlefinance import getQuotes
-
-
-class RetrievalError(Exception):
-    pass
+from urllib.error import HTTPError
+from yahoo_finance import YQLResponseMalformedError
 
 
 class Share2(Share):
@@ -28,8 +26,8 @@ class Share2(Share):
         try:
             price = getQuotes('ASX:' + self.code)[0]['LastTradePrice']
             self.last_price = price
-        except:
-            raise RetrievalError
+        except HTTPError:
+            self.last_price = 0.00
 
     def get_price(self):
         return self.last_price

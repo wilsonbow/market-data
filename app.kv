@@ -26,12 +26,9 @@ BoxLayout:
                 id: code
 
             Button:
+                id: add_share_btn
                 text: 'Add to list'
                 on_release: app.add_to_list()
-
-            Button:
-                text: 'Update prices'
-                on_release: app.update_prices()
 
             Button:
                 text: 'Load watchlist'
@@ -65,7 +62,7 @@ BoxLayout:
 
             canvas.before:
                 Color:
-                    rgba: 1, 0.21, 1, 1
+                    rgba: 0, 0, 1, 1
                 Rectangle:
                     pos: self.pos
                     size: self.size
