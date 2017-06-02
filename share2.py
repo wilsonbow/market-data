@@ -15,7 +15,8 @@ class Share2(Share):
     def __init__(self, code):
         super().__init__(code + '.AX')
         self.code = code
-        self.last_price = self.update_price()
+        self.last_price = None
+        self.update_price()
 
     def __str__(self):
         return "{}: ${}".format(self.code, self.last_price)

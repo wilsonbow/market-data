@@ -31,5 +31,14 @@ class Stocks(App):
         self.update_list()
         self.root.ids.code.text = ""
 
+    def update_prices(self):
+        self.update_statusbar('Updating prices...')
+        self.my_watchlist.update_prices()
+        self.update_list()
+        self.update_statusbar('Prices successfully updated!')
+
+    def update_statusbar(self, message):
+        self.root.ids.statusbar.text = message
+
 
 Stocks().run()

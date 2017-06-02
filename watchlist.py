@@ -43,3 +43,7 @@ class Watchlist:
             self.shares_dict.pop(code)
         except KeyError:
             return None
+
+    def update_prices(self):
+        for key in self.shares_dict:
+            self.shares_dict[key].update_price()
