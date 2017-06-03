@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.lang import Builder
 from watchlist import Watchlist
 from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 from threading import Timer
 from yahoo_finance import YQLResponseMalformedError
 from urllib.error import HTTPError
@@ -13,6 +15,7 @@ class Stocks(App):
         self.build()
         self.my_watchlist = Watchlist()
         self.update_timer = Timer(20, self.timer_cb)
+        self.add_code_input = TextInput()
 
     def build(self):
         self.title = 'Stock Watcher'
@@ -45,12 +48,12 @@ class Stocks(App):
             except TypeError:
                 pass
 
-    def add_to_list(self):
-        ticker = self.root.ids.code.text.upper()
+    def add_to_list(self, this_btn):
+        ticker = self.add_code_input.text.upper()
         self.root.ids.statusbar.text = 'Added {} to list'.format(ticker)
         self.my_watchlist.add_share(ticker)
         self.update_list()
-        self.root.ids.code.text = ""
+        self.add_code_input.text = ""
 
     def update_prices(self):
         self.root.ids.add_share_btn.state = 'down'
@@ -72,6 +75,15 @@ class Stocks(App):
             pass
         self.update_timer = Timer(20, self.timer_cb)
         self.update_timer.start()
+
+    def add_to_watchlist_menu(self):
+        self.root.ids.menu.clear_widgets()
+        self.root.ids.menu.add_widget(Label(text='Add share to\nwatchlist',
+                                            color=(1, 0, 0, 1)))
+        self.root.ids.menu.add_widget(self.add_code_input)
+        temp_button = Button(text='Add to list')
+        temp_button.bind(on_release=self.add_to_list)
+        self.root.ids.menu.add_widget(temp_button)
 
 
 Stocks().run()

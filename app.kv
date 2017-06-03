@@ -22,19 +22,13 @@ BoxLayout:
                 color: 100, 0.95, 0.44, 1
                 text: 'Control Panel'
 
-            TextInput:
-                id: code
-
             Button:
-                id: add_share_btn
-                text: 'Add to list'
-                on_release: app.add_to_list()
-
-            Button:
-                text: 'Load watchlist'
-                on_release: app.load_watchlist()
+                text: 'Add to watchlist'
+                on_release: app.add_to_watchlist_menu()
 
         BoxLayout:
+            orientation: 'vertical'
+            id: menu
             Label:
                 text: 'menu space'
 
