@@ -26,6 +26,10 @@ BoxLayout:
                 text: 'Add to watchlist'
                 on_release: app.add_to_watchlist_menu()
 
+            Button:
+                text: 'Show watchlists'
+                on_release: app.choose_watchlist_menu()
+
         BoxLayout:
             orientation: 'vertical'
             id: menu
